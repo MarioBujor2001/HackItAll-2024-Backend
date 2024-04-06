@@ -20,19 +20,25 @@ public class MockCollection {
                 70f,
                 true,
                 null));
-        mocks.put(3, new EnergyEventDAO("Bedroom_Light_1",
+        mocks.put(3, new EnergyEventDAO("Living_Outlet",
+                "test@gmail.com",
+                "Living",
+                60f,
+                true,
+                null));
+        mocks.put(4, new EnergyEventDAO("Bedroom_Light_1",
                 "test@gmail.com",
                 "Bedroom",
                 60f,
                 true,
                 null));
-        mocks.put(4, new EnergyEventDAO("Bedroom_RGB_Lights",
+        mocks.put(5, new EnergyEventDAO("Bedroom_RGB_Lights",
                 "test@gmail.com",
                 "Bedroom",
                 30f,
                 true,
                 null));
-        mocks.put(5, new EnergyEventDAO("Bedroom_Outlet",
+        mocks.put(6, new EnergyEventDAO("Bedroom_Outlet",
                 "test@gmail.com",
                 "Bedroom",
                 90f,
