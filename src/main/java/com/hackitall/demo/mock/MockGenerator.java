@@ -2,18 +2,34 @@ package com.hackitall.demo.mock;
 
 import com.hackitall.demo.model.EnergyEventDAO;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MockGenerator {
-    private static List<String> deviceIds = List.of("socket1", "socket2", "bulb1", "bulb2", "ac1", "ac2");
+    private static String email = "test@gmail.com";
+    private static Map<String, List<String>> spaces = new HashMap<>(){{
+        put("Living", List.of("Living_AirConditioning",
+                "Living_Lights",
+                "Living_Outlet"));
+        put("Bedroom", List.of("Bedroom_Light_1",
+                "Bedroom_RGB_Lights",
+                "Bedroom_Outlet"));
+        }
+    };
     private static Random random = new Random();
-    public static EnergyEventDAO generateEvent() {
-        EnergyEventDAO energyEventDAO = new EnergyEventDAO();
-        energyEventDAO.setId(deviceIds.get(random.nextInt(0, deviceIds.size()-1)));
-        energyEventDAO.setConsumption(random.nextFloat(0, 100));
-        energyEventDAO.setStatus(random.nextBoolean());
-        energyEventDAO.setTimestamp(System.currentTimeMillis()/1000L);
-        return energyEventDAO;
+    public static List<EnergyEventDAO> generateEvents() {
+        List<EnergyEventDAO> mockEvents = new ArrayList<>();
+        for(Map.Entry<String, List<String>> spacesEntry : spaces.entrySet()){
+            for(String deviceName : spacesEntry.getValue()){
+                EnergyEventDAO mockEvent = new EnergyEventDAO();
+                mockEvent.setName(deviceName);
+                mockEvent.setSpace(spacesEntry.getKey());
+                mockEvent.setTimestamp(System.currentTimeMillis()/1000L);
+                mockEvent.setEmail(email);
+                mockEvent.setConsumption(random.nextFloat(0, 100));
+                mockEvent.setStatus(true);
+                mockEvents.add(mockEvent);
+            }
+        }
+        return mockEvents;
     }
 }
